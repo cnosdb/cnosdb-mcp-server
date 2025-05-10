@@ -1,0 +1,55 @@
+# Smithery configuration file: https://smithery.ai/docs/build/project-config
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required: []
+    properties:
+      host:
+        type: string
+        default: 127.0.0.1
+        description: CnosDB host address
+      port:
+        type: number
+        default: 8902
+        description: CnosDB port
+      username:
+        type: string
+        default: root
+        description: CnosDB username
+      password:
+        type: string
+        default: ""
+        description: CnosDB password
+      database:
+        type: string
+        default: public
+        description: Default database to use for queries
+      httpTimeout:
+        type: number
+        default: 5
+        description: HTTP client timeout in seconds
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({
+      command: 'python',
+      args: ['server.py'],
+      env: {
+        CNOSDB_HOST: config.host,
+        CNOSDB_PORT: String(config.port),
+        CNOSDB_USERNAME: config.username,
+        CNOSDB_PASSWORD: config.password,
+        CNOSDB_DATABASE: config.database,
+        CNOSDB_HTTP_TIMEOUT: String(config.httpTimeout)
+      }
+    })
+  exampleConfig:
+    host: 127.0.0.1
+    port: 8902
+    username: root
+    password: my-secret
+    database: example_db
+    httpTimeout: 10

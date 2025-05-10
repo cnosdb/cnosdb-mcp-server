@@ -2,6 +2,7 @@
 
 [![Python 3.8](https://img.shields.io/badge/python-3.12-blue?logo=python&logoColor=white)](https://docs.python.org/3.12/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![smithery badge](https://smithery.ai/badge/@cnosdb/cnosdb-mcp-server)](https://smithery.ai/server/@cnosdb/cnosdb-mcp-server)
 
 An MCP server for CnosDB.
 
@@ -72,3 +73,11 @@ pip install -r requirements.txt
 }
 ```
 Update the environment variables to point to your own CnosDB service.
+
+### Installing via Smithery
+
+To install CnosDB Server for Claude Desktop automatically via [Smithery](https://smithery.ai/server/@cnosdb/cnosdb-mcp-server):
+
+```bash
+npx -y @smithery/cli install @cnosdb/cnosdb-mcp-server --client claude
+```
